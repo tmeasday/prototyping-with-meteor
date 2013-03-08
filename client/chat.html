@@ -1,0 +1,45 @@
+<head>
+  <title>chat</title>
+</head>
+
+<body>
+  <div class="row">
+    {{> rooms}}
+    <div class="span6">
+      <h1>Welcome to Meteor Chat</h1>
+      <p>Please a select a room to chat in, or create a new one</p>
+    </div>
+  </div>
+</body>
+
+<template name="rooms">
+  <form name="new_row">
+    <table id="rooms" class="table table-striped span6">
+      <thead>
+        <tr>
+          <th>Room Name</th>
+          <th>Members online</th>
+          <th>Last activity</th>
+        </tr>
+      </thead>
+        <tbody>
+        {{#each rooms}}
+          <tr>
+            <td>{{name}}</td>
+            <td>{{members}}</td>
+            <td>{{last_activity}}</td>
+          </tr>
+        {{/each}}
+      
+        <tr>
+          <td colspan="3">
+            <input type="text" name="name" placeholder="Enter your chatroom name"></input>
+            <button type="submit" class="btn btn-primary pull-right">
+              <i class="icon-plus"></i> Create Room
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </form>
+</template>
