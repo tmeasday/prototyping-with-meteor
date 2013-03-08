@@ -5,10 +5,7 @@
 <body>
   <div class="row">
     {{> rooms}}
-    <div class="span6">
-      <h1>Welcome to Meteor Chat</h1>
-      <p>Please a select a room to chat in, or create a new one</p>
-    </div>
+    {{renderPage}}
   </div>
 </body>
 
@@ -25,7 +22,7 @@
         <tbody>
         {{#each rooms}}
           <tr>
-            <td>{{name}}</td>
+            <td><a href="/rooms/7">{{name}}</a></td>
             <td>{{members}}</td>
             <td>{{last_activity}}</td>
           </tr>
@@ -42,4 +39,17 @@
       </tbody>
     </table>
   </form>
+</template>
+
+<template name="home">
+  <div class="span6">
+    <h1>Welcome to Meteor Chat</h1>
+    <p>Please a select a room to chat in, or create a new one</p>
+  </div>
+</template>
+
+<template name="room">
+  <div class="span6">
+    <h1>Welcome to a chatroom!</h1>
+  </div>
 </template>
