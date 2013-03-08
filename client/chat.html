@@ -50,6 +50,31 @@
 
 <template name="room">
   <div class="span6">
-    <h1>Welcome to a chatroom!</h1>
+    {{#with room}}
+      <h1>Welcome to {{name}}</h1>
+      
+      <table id="chat" class="table table-striped">
+        <tbody>
+          {{#each messages}}
+            <tr>
+              <td>{{author}} :</td>
+              <td>{{text}}</td>
+            </tr>
+          {{/each}}
+          
+          <tr>
+            <td colspan="2">
+              <form name="new_message">
+                <input type="text" name="text"></input>
+                <button type="submit" class="btn btn-primary pull-right">
+                  <i class="icon-envelope"></i> Send message
+                </button>
+              </form>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    {{/with}}
   </div>
 </template>
+
