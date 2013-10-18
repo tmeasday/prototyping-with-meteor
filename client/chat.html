@@ -1,80 +1,87 @@
 <head>
-  <title>chat</title>
+   <title>chat</title>
 </head>
 
 <body>
-  <div class="row">
-    {{> rooms}}
-    {{renderPage}}
-  </div>
 </body>
 
+<template name="layout">
+   <div class="container-fluid">
+      <div class="row-fluid">
+         <div class="span6">
+
+            {{> rooms}}
+         </div>
+         {{yield 'homeYield'}}
+         {{yield 'roomYield'}}
+      </div>
+   </div>
+</template>
+
+
 <template name="rooms">
-  <form name="new_row">
-    <table id="rooms" class="table table-striped span6">
-      <thead>
-        <tr>
-          <th>Room Name</th>
-          <th>Members online</th>
-          <th>Last activity</th>
-        </tr>
-      </thead>
-        <tbody>
-        {{#each rooms}}
-          <tr>
-            <td><a href="/rooms/{{_id}}">{{name}}</a></td>
-            <td>{{members}}</td>
-            <td>{{last_activity}}</td>
-          </tr>
-        {{/each}}
-      
-        <tr>
-          <td colspan="3">
-            <input type="text" name="name" placeholder="Enter your chatroom name"></input>
-            <button type="submit" class="btn btn-primary pull-right">
-              <i class="icon-plus"></i> Create Room
-            </button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </form>
+   <form name="new_row">
+      <table id="rooms" class="table table-striped">
+         <thead>
+            <tr>
+               <th>Room Name</th>
+               <th>Members online</th>
+               <th>Last activity</th>
+            </tr>
+         </thead>
+         <tbody>
+            {{#each rooms}}
+            <tr>
+               <td><a href="/rooms/{{_id}}">{{name}}</a></td>
+               <td>{{members}}</td>
+               <td>{{last_activity}}</td>
+            </tr>
+            {{/each}}
+            <tr>
+               <td colspan="3">
+                  <input type="text" name="name" placeholder="Enter your chatroom name"></input>
+                  <button type="submit" class="btn btn-primary pull-right">
+                     <i class="icon-plus"></i> Create Room
+                  </button>
+               </td>
+            </tr>
+         </tbody>
+      </table>
+   </form>
 </template>
 
 <template name="home">
-  <div class="span6">
-    <h1>Welcome to Meteor Chat</h1>
-    <p>Please a select a room to chat in, or create a new one</p>
-  </div>
+   <div class="span6">
+      <h1>Welcome to Meteor Chat</h1>
+      <p>Please a select a room to chat in, or create a new one</p>
+   </div>
 </template>
 
 <template name="room">
-  <div class="span6">
-    {{#with room}}
+   <div class="span6">
       <h1>Welcome to {{name}}</h1>
       
       <table id="chat" class="table table-striped">
-        <tbody>
-          {{#each messages}}
+         <tbody>
+            {{#each messages}}
             <tr>
-              <td>{{author}} :</td>
-              <td>{{text}}</td>
+               <td>{{author}} :</td>
+               <td>{{text}}</td>
             </tr>
-          {{/each}}
+            {{/each}}
           
-          <tr>
-            <td colspan="2">
-              <form name="new_message">
-                <input type="text" name="text"></input>
-                <button type="submit" class="btn btn-primary pull-right">
-                  <i class="icon-envelope"></i> Send message
-                </button>
-              </form>
-            </td>
-          </tr>
-        </tbody>
+            <tr>
+               <td colspan="2">
+                  <form name="new_message">
+                     <input type="text" name="text"></input>
+                     <button type="submit" class="btn btn-primary pull-right">
+                        <i class="icon-envelope"></i> Send message
+                     </button>
+                  </form>
+               </td>
+            </tr>
+         </tbody>
       </table>
-    {{/with}}
-  </div>
+   </div>
 </template>
 
